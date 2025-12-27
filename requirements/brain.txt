@@ -1,0 +1,9 @@
+transformers
+torch
+accelerate
+safetensors
+
+# RAG
+sentence-transformers
+faiss-cpu
+tiktoken

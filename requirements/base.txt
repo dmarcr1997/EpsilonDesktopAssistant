@@ -1,0 +1,10 @@
+# Core
+numpy
+pydantic
+python-dotenv
+rich
+loguru
+
+# Async / orchestration
+anyio
+asyncio-mqtt
