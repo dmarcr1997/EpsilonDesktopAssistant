@@ -55,6 +55,8 @@ class HFBrain:
         if torch.cuda.is_available() and self.cfg.device in ("auto", "cuda"):
             inputs = {k: v.to("cuda") for k, v in inputs.items()}
 
+        input_length = inputs["input_ids"].shape[1]
+        
         out = self.model.generate(
             **inputs,
             max_new_tokens = self.cfg.max_new_tokens,
@@ -62,8 +64,8 @@ class HFBrain:
             temperature=self.cfg.temperature,
             pad_token_id=self.tokenizer.eos_token_id
         )
-        text = self.tokenizer.decode(out[0], skip_special_tokens=True)
-
-        if text.startswith(prompt):
-            return text[len(prompt):].strip()
+        
+        generated_tokens = out[0][input_length:]
+        text = self.tokenizer.decode(generated_tokens, skip_special_tokens=True)
+        
         return text.strip()

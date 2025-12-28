@@ -27,5 +27,7 @@ class VoskSTT:
         
         result = json.loads(rec.FinalResult())
         text = (result.get("text") or "").strip()
+        if text == '':
+            text = partial.get('text')
         print(f"STT: Final result: '{text}'")
         return text

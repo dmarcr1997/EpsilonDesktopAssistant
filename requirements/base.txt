@@ -4,6 +4,7 @@ pydantic
 python-dotenv
 rich
 loguru
+keyboard
 
 # Async / orchestration
 anyio
